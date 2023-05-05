@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     name: run tests with code coverage
-    runs-on: docker://alpine:latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         go:
