@@ -1,4 +1,4 @@
-name: tests
+name: tests & build docker image
 on:
   pull_request:
     branches:
@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         go:
-          - "1.20"  
+          - "1.20"   
 
     steps:
       - name: Set up Go ${{ matrix.go }}
@@ -32,3 +32,16 @@ jobs:
           env_vars: GO
         env:
           GO: ${{ matrix.go }}
+
+      - name: set up QEMU
+        uses: docker/setup-qemu-action@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: build & push
+        id: docker_build
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          tags: duarty/golang-api:latest
