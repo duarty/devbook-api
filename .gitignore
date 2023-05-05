@@ -8,7 +8,7 @@
 *.so
 *.dylib
 node_modules
-.gitignore
+*.gitignore
 coverage.*
 # Test binary, built with `go test -c`
 *.test
